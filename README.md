@@ -1,8 +1,8 @@
 Grupo 1:
 
-Adriana Garibalde
-Frederico Lopes
-Giovanni Prazeres
-Gustavo Medeiros
-João Victor da Costa
-Nicolas Thedoro# serratec-ecommerce-front
+Adriana Garibalde<br>
+Frederico Lopes<br>
+Giovanni Prazeres<br>
+Gustavo Medeiros<br>
+João Victor da Costa<br>
+Nicolas Thedoro# serratec-ecommerce-front<br>
