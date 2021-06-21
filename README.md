@@ -5,4 +5,4 @@ Frederico Lopes
 Giovanni Prazeres
 Gustavo Medeiros
 João Victor da Costa
-Nicolas Thedoro
+Nicolas Thedoro# serratec-ecommerce-front
