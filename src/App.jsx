@@ -1,9 +1,13 @@
 import React from "react";
 
+import PrimarySearchAppBar from "./components/Header";
+
+import "./global.css"
+
 function App() {
   return (
     <div className="App">
-      <h1>Serratec Ecommerce</h1>
+      <PrimarySearchAppBar />
     </div>
   );
 }
