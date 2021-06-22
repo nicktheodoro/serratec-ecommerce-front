@@ -4,11 +4,11 @@ import PrimarySearchAppBar from "./components/Header";
 
 import Cart from "./pages/Cart";
 
-import "./global.css"
+import styles from "./global.scss"
 
 function App() {
   return (
-    <div className="App">
+    <div className={styles}>
       <PrimarySearchAppBar />
       <Cart />
     </div>
