@@ -1,21 +1,26 @@
 import React from "react";
 
-import Cards from "../../components/Cards";
 import API from "../../services/api";
+import Cards from "../../components/Cards";
 import Product from "../../models/Product";
+
 import { ContainerMain } from "../../components/Cards/style";
 
-export default class Home extends React.Component {
+export default class Artesanais extends React.Component {
   state = {
     products: [],
   };
 
   componentDidMount() {
     this.getProducts();
+    console.log(this.state.products)
   }
 
   getProducts = async () => {
-    const response = await API.get("/produto");
+
+    const { categoria } = this.props.match.params;
+
+    const response = await API.get(`/produto/categoria/${categoria}`);
     this.setState({
       products: response.data.map((product) => new Product(product)),
     });

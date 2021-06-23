@@ -1,53 +1,28 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-import API from "../../services/api";
-import Product from "../../models/Product";
-import formatForReal from "../../utils/formatFuncionts";
-import formatName from "../../utils/teste";
+import format from "../../utils/format";
 
-import {
-  ContainerMain,
-  Card,
-  ImagemCard,
-  Conteudo,
-} from "./style";
+import { Card, ImagemCard, Conteudo } from "./style";
 
-export default class Cards extends React.Component {
-  
-  state = {
-    products: [],
-  };
-
-  componentDidMount() {
-    this.getProducts();
-  }
-
-  getProducts = async () => {
-    const response = await API.get("/produto");
-    this.setState({
-      products: response.data.map((product) => new Product(product)),
-    });
-    console.log(this.state.products);
-  };
-
-  render() {
-    return (
-      <ContainerMain>
-        {this.state.products.map((product) => {
-          return (
-            <Card key={product.nome} mt={50}>
-              <ImagemCard
-                src={`https://ecommerce-serratec.herokuapp.com/produto/${product.nome}/imagem`}
-              ></ImagemCard>
-              <Conteudo>
-                <h3>{formatName(product.nome)}</h3>
-                <p>{product.descricao}</p>
-                <h3>{formatForReal(product.valor)}</h3>
-              </Conteudo>
-            </Card>
-          );
-        })}
-      </ContainerMain>
-    );
-  }
+export default function Cards(props) {
+  return (
+      <Link to={`products/${props.nome}/details`}>
+        <Card key={props.nome} mt={50}>
+          <ImagemCard
+            src={`https://ecommerce-serratec.herokuapp.com/produto/${props.nome}/imagem`}
+          ></ImagemCard>
+          <Conteudo>
+            <h5>
+              <strong>{format.formatWords(props.nome)}</strong>
+            </h5>
+            <h6>{format.formatWords(props.categoria)}</h6>
+            {console.log(props.nome)}
+            <h3>
+              <strong>{format.formatForReal(props.valor)}</strong>
+            </h3>
+          </Conteudo>
+        </Card>
+      </Link>
+  );
 }

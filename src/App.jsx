@@ -1,13 +1,15 @@
 import React from "react";
 
-import Home from "./pages/Home";
+import Routes from "./routers/routes";
 
-import styles from "./global.scss"
+import "./global.scss"
+
+import styles from "./app.module.scss";
 
 function App() {
   return (
-    <div className={styles}>
-      <Home />
+    <div className={styles.wrappper}>
+      <Routes />
     </div>
   );
 }

@@ -7,11 +7,11 @@ import Button from "@material-ui/core/Button";
 
 import Cliente from "../../models/Client";
 import Endereco from "../../models/Address";
+import EnderecoShow from "../../models/AddressShow";
 
 import api from "../../services/api";
 import apiViaCep from "../../services/viacep-api";
-
-import "../../global.css";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -26,16 +26,51 @@ const useStyles = makeStyles((theme) => ({
       margin: theme.spacing(0),
       width: "100vw",
     },
-    border: "1px solid #ddd",
-    padding: "8px",
+    border: "2px solid #ddd",
+    padding: "1.5rem",
+    marginTop: "3rem",
   },
   title: {
     textAlign: "center",
-    fontSize: "1,5625rem",
-    color: "var(--dark)",
+    fontSize: "2.4rem",
+    color: "#049843",
+    fontWeight: 700,
   },
   group: {
     padding: theme.spacing(0),
+    width: "100%",
+  },
+  groupButtons: {
+    display: "flex",
+    justifyContent: "center",
+    marginTop: "0",
+  },
+  buttonCadastrar: {
+    display: "flex",
+    justifyContent: "center",
+    backgroundColor: "#009640;",
+    color: "#fff",
+    fontWeight: "600",
+    width: "80%",
+    "&:hover": {
+      backgroundColor: "#049843",
+    },
+  },
+  buttonVoltar: {
+    display: "flex",
+    borderColor: "#009640",
+    color: "#049843",
+    fontWeight: "600",
+    width: "80%",
+    "&:hover": {
+      backgroundColor: "#049843",
+      color: "#fff",
+    },
+  },
+  link: {
+    display: "flex",
+    justifyContent: "center",
+    textDecoration: "none",
     width: "100%",
   },
 }));
@@ -57,22 +92,7 @@ export default function Register() {
   const [complemento, setComplemento] = useState("");
   const [numero, setNumero] = useState("");
 
-  // const [endereco, setEndereco] = useState([new Endereco()]);
-
   var endereco = new Endereco();
-
-  function handleChange(event) {
-    const target = event.target;
-    const name = target.name;
-  }
-
-  // function handleChangeEndereco(event) {
-  //   const target = event.target;
-  //   const name = target.name;
-
-  //   endereco[name] = target.value;
-  //   setEndereco({ endereco });
-  // }
 
   async function ObterEndereco(event) {
     event.preventDefault();
@@ -84,62 +104,67 @@ export default function Register() {
 
     try {
       const resposta = await apiViaCep.get(`/${cep}/json`);
-      endereco = new Endereco(resposta.data);
-      setBairro(endereco.bairro);
-      setCidade(endereco.cidade);
-      setLogradouro(endereco.logradouro);
-      console.log(endereco);
+      let enderecoShow = new EnderecoShow(resposta.data);
+
+      setBairro(enderecoShow.bairro);
+      setCidade(enderecoShow.cidade);
+      setLogradouro(enderecoShow.logradouro);
+      // console.log(endereco);
     } catch (error) {
       console.log(error);
       alert("Ops, não foi possivel obter o endereço, favor verifique o CEP");
     }
   }
 
-  async function handleSubmit(event) {
-    // event.preventDefault();
-    console.log(cep);
-    console.log(numero);
-    console.log(complemento);
-
+  function handleSubmit(event) {
     const enderecos = new Endereco({
       cep: cep,
       numero: numero,
       complemento: complemento,
     });
 
-    const cliente = new Cliente({
-      email: email,
-      username: userName,
-      senha: senha,
-      nome: nome,
-      cpf: cpf,
-      telefone: telefone,
-      dataNascimento: dataNascimento,
-      enderecos: [
-        {
-          cep: cep,
-          numero: numero,
-          complemento: complemento,
-        },
-      ],
-    },
-    [enderecos]
+    const cliente = new Cliente(
+      {
+        email: email,
+        username: userName,
+        senha: senha,
+        nome: nome,
+        cpf: cpf,
+        telefone: telefone,
+        dataNascimento: dataNascimento,
+        enderecos: [
+          {
+            cep: cep,
+            numero: numero,
+            complemento: complemento,
+          },
+        ],
+      },
+      enderecos
     );
     console.log(cliente);
-    try {
-      const resposta = await api.post("/cliente", cliente);
-      console.log(resposta);
-      alert("Cliente cadastrado com sucesso!");
-    } catch (error) {
-      console.log(error);
-      alert("Ops, não foi possivel completar o cadastro");
-    }
+
+    event.preventDefault();
+
+    return new Promise((resolve, reject) => {
+      return api
+        .post("/cliente", cliente)
+        .then((response) => {
+          console.log(response);
+          alert("Cliente cadastrado com sucesso");
+        })
+
+        .catch((error) => {
+          console.log(error);
+          alert("Não foi possível realizar o cadastro :(");
+        });
+    });
   }
 
   return (
     <Container maxWidth="sm">
       <form action="" className={classes.form}>
-        <Grid container spacing={3} zeroMinWidth>
+        <Grid container spacing={3}>
           <Grid item xs={12}>
             <h1 className={classes.title}>Cadastro</h1>
           </Grid>
@@ -151,11 +176,9 @@ export default function Register() {
               // error
               id="email"
               label="Email"
-              type="Email"
+              type="email"
               name="email"
               onChange={(event) => setEmail(event.target.value)}
-              // value={email}
-              // helperText="Campo obrigatório"
               variant="outlined"
               size="small"
             />
@@ -171,8 +194,6 @@ export default function Register() {
               type="text"
               name="username"
               onChange={(event) => setUserName(event.target.value)}
-              // value={userName}
-              // helperText="Campo obrigatório"
               variant="outlined"
               size="small"
             />
@@ -182,14 +203,11 @@ export default function Register() {
             <TextField
               className={classes.group}
               required
-              // error
               id="senha"
               label="Senha"
               type="password"
               name="senha"
-              // value={cliente.senha}
               onChange={(event) => setSenha(event.target.value)}
-              // helperText="Campo obrigatório"
               variant="outlined"
               size="small"
             />
@@ -204,9 +222,7 @@ export default function Register() {
               label="Nome Completo"
               type="text"
               name="nome"
-              // value={cliente.nome}
               onChange={(event) => setNome(event.target.value)}
-              // helperText="Campo obrigatório"
               variant="outlined"
               size="small"
             />
@@ -221,9 +237,7 @@ export default function Register() {
               label="CPF"
               type="text"
               name="cpf"
-              // value={cliente.cpf}
               onChange={(event) => setCpf(event.target.value)}
-              // helperText="Campo obrigatório"
               variant="outlined"
               size="small"
             />
@@ -235,7 +249,6 @@ export default function Register() {
               label="Data de Nascimento"
               type="date"
               name="dataNascimento"
-              // value={cliente.dataNascimento}
               onChange={(event) => setDataNascimento(event.target.value)}
               defaultValue="2017-05-24"
               size="small"
@@ -286,16 +299,13 @@ export default function Register() {
             <TextField
               className={classes.group}
               required
-              // error
               id="logradouro"
               label="Logradouro"
               type="text"
               name="logradouro"
               value={logradouro}
-              // helperText="Campo obrigatório"
               variant="outlined"
               size="small"
-              InputLabelProps={{ shrink: true }}
             />
           </Grid>
 
@@ -303,14 +313,12 @@ export default function Register() {
             <TextField
               className={classes.group}
               required
-              // error
               id="numero"
               label="Nº"
               type="text"
               name="numero"
               value={numero}
               onChange={(event) => setNumero(event.target.value)}
-              // helperText="Campo obrigatório"
               variant="outlined"
               size="small"
             />
@@ -320,16 +328,13 @@ export default function Register() {
             <TextField
               className={classes.group}
               required
-              // error
               id="bairro"
               label="Bairro"
               type="text"
               name="bairro"
               value={bairro}
-              // helperText="Campo obrigatório"
               variant="outlined"
               size="small"
-              InputLabelProps={{ shrink: true }}
             />
           </Grid>
 
@@ -337,16 +342,13 @@ export default function Register() {
             <TextField
               className={classes.group}
               required
-              // error
               id="cidade"
               label="Cidade"
               type="text"
               name="cidade"
               value={cidade}
-              // helperText="Campo obrigatório"
               variant="outlined"
               size="small"
-              InputLabelProps={{ shrink: true }}
             />
           </Grid>
 
@@ -354,7 +356,6 @@ export default function Register() {
             <TextField
               className={classes.group}
               required
-              // error
               id="complemento"
               label="Complemento"
               type="text"
@@ -366,21 +367,22 @@ export default function Register() {
             />
           </Grid>
 
-          <Grid item xs={12} zeroMinWidth>
+          <Grid item xs={12} zeroMinWidth className={classes.groupButtons}>
             <Button
               variant="contained"
-              color="primary"
-              onClick={() => {
-                // setarEnderecoCliente();
-
-                handleSubmit();
-              }}
+              className={classes.buttonCadastrar}
+              onClick={handleSubmit}
             >
               Cadastrar
             </Button>
           </Grid>
-          <Grid item xs={12} zeroMinWidth>
-            <Button variant="outlined">Voltar</Button>
+
+          <Grid item xs={12} zeroMinWidth className={classes.groupButtons}>
+            <Link to="/" className={classes.link}>
+              <Button variant="outlined" className={classes.buttonVoltar}>
+                Voltar
+              </Button>
+            </Link>
           </Grid>
         </Grid>
       </form>

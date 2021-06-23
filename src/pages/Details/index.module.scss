@@ -1,0 +1,38 @@
+.detailsContainer {
+  img {
+    width: 25rem;
+    border: solid 1px black;
+  }
+
+  .formContainer {
+    border: 1px solid var(--gray-500);
+  }
+
+  .buttons {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+
+    input {
+      align-self: center;
+      width: 100%;
+      color: #fff;
+
+      border: none;
+      border-radius: 12px;
+
+      padding: 0.5rem;
+
+      background-color: #2562ff;
+
+      cursor: pointer;
+
+      transition: 0.3s;
+
+      :hover {
+        background-color: #1543b7;
+        color: #fff;
+      }
+    }
+  }
+}
