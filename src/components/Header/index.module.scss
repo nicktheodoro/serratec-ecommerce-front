@@ -1,0 +1,13 @@
+.navbar {
+  font-weight: 600;
+  font-family: Lexend, sans-serif;
+  color: var(--gray-800);
+
+  form {
+    input {
+      font: 500 1rem Inter, sans-serif;
+      color: var(--gray-500);
+      width: 300px;
+    }
+  }
+}

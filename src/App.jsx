@@ -1,16 +1,13 @@
 import React from "react";
 
-import PrimarySearchAppBar from "./components/Header";
-
-import Cart from "./pages/Cart";
+import Home from "./pages/Home";
 
 import styles from "./global.scss"
 
 function App() {
   return (
     <div className={styles}>
-      <PrimarySearchAppBar />
-      <Cart />
+      <Home />
     </div>
   );
 }

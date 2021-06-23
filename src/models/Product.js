@@ -4,10 +4,10 @@ export default class Product {
       obj = obj || {};
               
       this.nome = obj.nome;
-      this.quantidade = obj.quantidade;
+      this.quantidade = obj.quantidadeEstoque;
       this.descricao = obj.descricao;
       this.categoria = obj.categoria;
-      this.valor = obj.valor;
-      this.urlImagem = obj.urlImagem;
+      this.valor = obj.preco;
+      this.urlImagem = obj.url;
   }
 }
