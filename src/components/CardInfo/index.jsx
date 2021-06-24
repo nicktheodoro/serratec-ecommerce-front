@@ -1,10 +1,8 @@
 import React from "react";
 
 import DivContainer from "./style";
-import format from "../../utils/format";
 
 export default function CardInfo(props) {
-
   return (
     <DivContainer>
       <h1>
@@ -14,7 +12,7 @@ export default function CardInfo(props) {
       <h2>
         <strong>{props.valor}</strong>
       </h2>
-      <h5>{props.categoria}</h5>
+      <h6>{props.categoria}</h6>
     </DivContainer>
   );
 }

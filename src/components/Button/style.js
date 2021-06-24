@@ -10,7 +10,7 @@ const Button = styled.button`
 
   padding: 0.5rem;
 
-  width: 400px;
+  width: 60%;
 
   background-color: var(--green-400);
 

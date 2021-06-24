@@ -1,5 +1,4 @@
 import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
 
 import API from "../../services/api";
 import Product from "../../models/Product";
@@ -13,8 +12,8 @@ import Quantity from "../../components/Quantity";
 
 export default class Details extends React.Component {
   state = {
-    product: {},
-  };
+    product: new Product(),
+   };
 
   async componentDidMount() {
     const { nome } = this.props.match.params;
@@ -37,16 +36,16 @@ export default class Details extends React.Component {
 
         <div className={style.containerInfos}>
           <CardInfo
-            nome={product.nome}
+            nome={format.formatWords(product.nome)}
             descricao={product.descricao}
             valor={format.formatForReal(product.valor)}
-            categoria={product.categoria}
+            categoria={format.formatWords(product.categoria)}
           />
         </div>
 
         <div className={style.containerComprar}>
           <Quantity />
-          <Button>Adicionar ao Carrinho</Button>
+          <Button>Adicionar à Geladeira</Button>
           <Button>Comprar Agora</Button>
         </div>
       </div>

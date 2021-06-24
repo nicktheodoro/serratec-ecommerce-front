@@ -10,13 +10,6 @@ const DivContainer = styled.div`
 
   padding: 1rem;
 
-  h1 {
-    margin-top: 1rem;
-  }
-
-  h1 + p {
-    margin-top: 1rem;
-  }
 `;
 
 export default DivContainer;

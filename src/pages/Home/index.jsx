@@ -3,6 +3,8 @@ import React from "react";
 import Cards from "../../components/Cards";
 import API from "../../services/api";
 import Product from "../../models/Product";
+import format from "../../utils/format";
+
 import { ContainerMain } from "../../components/Cards/style";
 
 export default class Home extends React.Component {
@@ -23,9 +25,10 @@ export default class Home extends React.Component {
 
   render() {
     const { products } = this.state;
+
     return (
       <ContainerMain>
-        {products.map((product) => {
+        {format.sortByName(products).map((product) => {
           return (
             <Cards
               url={product.url}
