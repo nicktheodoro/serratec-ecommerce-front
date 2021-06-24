@@ -20,9 +20,9 @@ export default function Header() {
           style={{ maxHeight: "100px" }}
           navbarScroll
         >
-          <Nav.Link href="/products/artesanais">Artesanais</Nav.Link>
-          <Nav.Link href="/products/nacionais">Nacionais</Nav.Link>
-          <Nav.Link href="/products/importadas">Importadas</Nav.Link>
+          <Nav.Link href="/artesanais">Artesanais</Nav.Link>
+          <Nav.Link href="/nacionais">Nacionais</Nav.Link>
+          <Nav.Link href="/importadas">Importadas</Nav.Link>
         </Nav>
 
         <Form className="d-flex">
