@@ -9,7 +9,7 @@ export default function Quantity() {
   };
 
   const handleRmv = () => {
-    if(quantidade == 1) {
+    if(quantidade === 1) {
       return
     }
     setQuantidade(quantidade - 1);

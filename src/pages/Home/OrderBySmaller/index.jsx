@@ -1,14 +1,14 @@
 import React from "react";
 
-import Cards from "../../components/Cards";
-import API from "../../services/api";
-import Product from "../../models/Product";
-import format from "../../utils/format";
-import OrderBy from "../../components/OrderBy";
+import Cards from "../../../components/Cards";
+import API from "../../../services/api";
+import Product from "../../../models/Product";
+import format from "../../../utils/format";
+import OrderBy from "../../../components/OrderBy";
 
-import { ContainerMain } from "../../components/Cards/style";
+import { ContainerMain } from "../../../components/Cards/style";
 
-export default class Home extends React.Component {
+export default class OrderBySmalller extends React.Component {
   state = {
     products: [],
   };
@@ -31,7 +31,7 @@ export default class Home extends React.Component {
       <>
       <OrderBy />
       <ContainerMain>
-        {format.shuffleArray(products).map((product) => {
+        {format.sortBySmallerValue(products).map((product) => {
           return (
             <Cards
               url={product.url}
@@ -46,4 +46,3 @@ export default class Home extends React.Component {
     );
   }
 }
-
