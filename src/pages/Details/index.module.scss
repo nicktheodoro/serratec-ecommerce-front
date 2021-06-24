@@ -4,7 +4,9 @@
   margin: 0 auto;
   margin-top: 4rem;
   margin-bottom: 3rem;
-  max-width: 75%;
+  width: 75%;
+  max-width: 1000px;
+  min-height: 500px;
 
   display: grid;
 
@@ -54,5 +56,9 @@
   .containerImg {
     margin-top: 1rem;
     border: none !important;
+    margin-bottom: 1rem;
+  }
+  .containerInfos {
+    border-top: 1px solid var(--gray-200);
   }
 }

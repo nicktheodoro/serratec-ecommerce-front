@@ -24,7 +24,7 @@ export const ContainerMain = styled.div`
   a {
     text-decoration: none !important;
   }
-  padding: 80px 0;
+  padding: 50px 0;
   width: 1300px;
   margin: auto;
   display: grid;

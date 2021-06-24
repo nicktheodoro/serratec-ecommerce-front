@@ -17,7 +17,6 @@ export default function Cards(props) {
               <strong>{format.formatWords(props.nome)}</strong>
             </h5>
             <h6>{format.formatWords(props.categoria)}</h6>
-            {console.log(props.nome)}
             <h3>
               <strong>{format.formatForReal(props.valor)}</strong>
             </h3>
