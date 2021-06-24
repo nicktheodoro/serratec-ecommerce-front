@@ -1,38 +1,43 @@
 .detailsContainer {
-  img {
-    width: 25rem;
-    border: solid 1px black;
-  }
+  
+  box-shadow: 0 0 2px black;
+  height: 60vh;
+  margin: 0 auto;
+  margin-top: 4rem;
+  max-width: 900px;
 
-  .formContainer {
-    border: 1px solid var(--gray-500);
-  }
+  display: grid;
+	
+  grid-template-columns: 300px auto;
+	grid-template-rows: auto 200px;
+	grid-template-areas:
+		'IMG TXT'
+		'IMG BTN';
 
-  .buttons {
+  .containerImg {
+    grid-area: IMG;
+    align-self: center;
+    border-right: 1px solid  var(--gray-200);
+    height: 80%;
     display: flex;
-    flex-direction: column;
-    margin-top: 1rem;
-
-    input {
-      align-self: center;
-      width: 100%;
-      color: #fff;
-
-      border: none;
-      border-radius: 12px;
-
-      padding: 0.5rem;
-
-      background-color: #2562ff;
-
-      cursor: pointer;
-
-      transition: 0.3s;
-
-      :hover {
-        background-color: #1543b7;
-        color: #fff;
-      }
-    }
+    flex: 1;
   }
+
+  img {
+    margin: auto auto;
+    height: 20rem;
+  }
+
+  .containerInfos {
+    grid-area: TXT;
+  }
+
+  .containerComprar {
+    grid-area: BTN;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+
 }

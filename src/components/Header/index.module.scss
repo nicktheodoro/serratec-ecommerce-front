@@ -12,9 +12,6 @@
     }
   }
 
-  
-  
-
   form {
     
     input {
@@ -22,5 +19,9 @@
       color: var(--gray-500);
       width: 300px;
     }
+  }
+
+  .login {
+    margin-left: 1.4rem;
   }
 }
