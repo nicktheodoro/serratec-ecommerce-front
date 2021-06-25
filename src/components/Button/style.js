@@ -18,7 +18,12 @@ const Button = styled.button`
 
   transition: 0.3s;
 
-  &:hover {
+  a {
+    color: white;
+    text-decoration: none;
+  }
+
+  :hover {
     background-color: var(--green-light);
   }
 `;

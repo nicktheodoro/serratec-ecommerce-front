@@ -21,7 +21,7 @@ export default class CategoryOrderByBigger extends React.Component {
   getProducts = async () => {
     const { category } = this.props.match.params;
 
-    this.setState({category: category});
+    this.setState({ category: category });
 
     const response = await API.get(`/produto/categoria/${category}`);
     this.setState({
@@ -33,7 +33,7 @@ export default class CategoryOrderByBigger extends React.Component {
     const { products } = this.state;
     return (
       <>
-        <CategoryOrderBy categoria={this.state.category}/>
+        <CategoryOrderBy categoria={this.state.category} />
         <ContainerMain>
           {format.sortByBiggerValue(products).map((product) => {
             return (

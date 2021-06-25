@@ -47,11 +47,15 @@ export default function Header() {
             style={{ maxHeight: "100px" }}
             navbarScroll
           >
-            <Nav.Link href="/" className={style.login} onClick={storage.removerAutenticacao}>
+            <Nav.Link
+              href="/"
+              className={style.login}
+              onClick={storage.removerAutenticacao}
+            >
               Logout
             </Nav.Link>
           </Nav>
-          <Nav.Link href="#action3">
+          <Nav.Link href="/fridge">
             <img src="https://img.icons8.com/glyph-neue/35/26e07f/fridge.png" />
           </Nav.Link>
         </>
@@ -67,10 +71,13 @@ export default function Header() {
             </Nav.Link>
             <Nav.Link href="/register">Cadastro</Nav.Link>
           </Nav>
-
-          <Nav.Link href="#action3">
-            <img src="https://img.icons8.com/glyph-neue/35/26e07f/fridge.png" />
-          </Nav.Link>
+          {logado != null ? (
+            <Nav.Link href="/fridge">
+              <img src="https://img.icons8.com/glyph-neue/35/26e07f/fridge.png" />
+            </Nav.Link>
+          ) : (
+            <></>
+          )}
         </>
       )}
     </Navbar>
