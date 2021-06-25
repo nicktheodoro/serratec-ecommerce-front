@@ -138,6 +138,12 @@ const useStyles = makeStyles((theme) => ({
 export default function AutoGrid() {
   const classes = useStyles();
 
+  const limparStorage = () => {
+    alert("Pagamento realizado sucesso!");
+    localStorage.removeItem("produtos");
+    window.open("/", "_self");
+  };
+
   return (
     <Container maxWidth="sm" className={classes.divForm}>
       <form action="" className={classes.form}>
@@ -236,7 +242,11 @@ export default function AutoGrid() {
           </Grid>
 
           <Grid item xs={12} zeroMinWidth className={classes.groupButtons}>
-            <Button variant="contained" className={classes.buttonEntrar}>
+            <Button
+              variant="contained"
+              className={classes.buttonEntrar}
+              onClick={limparStorage}
+            >
               Finalizar Compra
             </Button>
           </Grid>
