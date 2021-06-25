@@ -1,5 +1,6 @@
 import React from "react";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 import FridgeProducts from "../../components/FridgeProducts";
 import format from "../../utils/format";
@@ -71,7 +72,7 @@ const Fridge = () => {
             <p>Total</p>
             <span>{format.formatForReal(valorTotal)}</span>
           </DivPreco>
-          <ButtonPagamento> Efetuar pagamento</ButtonPagamento>
+          <ButtonPagamento> <Link to={"/payment"}>Efetuar pagamento</Link></ButtonPagamento>
         </DivFatura>
       </DivExterna>
     </div>

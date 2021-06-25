@@ -65,6 +65,47 @@ export default class Details extends React.Component {
     }
   };
 
+  finshOrder = () => {
+    const logado = localStorage.getItem("token");
+    const produto = JSON.parse(localStorage.getItem("produto")) || {};
+    const produtos = JSON.parse(localStorage.getItem("produtos")) || [];
+
+    if (!logado) {
+      alert("Você precisa estar logado.");
+      produtos.push(produto);
+      localStorage.setItem("produtos", JSON.stringify(produtos));
+      localStorage.removeItem("produto");
+      window.open("/login", "_self");
+      localStorage.removeItem("msg");
+      return;
+    }
+
+    if (!localStorage.getItem("msg")) {
+      alert("Você precisa adicionar produtos à geladeira");
+      return;
+    }
+
+    localStorage.removeItem("msg");
+
+    const contem = produtos.filter((p) => p.nome === produto.nome);
+
+    if (contem.length == 1) {
+      produtos.map((p) => {
+        if (p.nome === produto.nome) {
+          p.quantidade += produto.quantidade;
+          localStorage.setItem("produtos", JSON.stringify(produtos));
+          window.open("/fridge", "_self");
+          return;
+        }
+      });
+    } else {
+      produtos.push(produto);
+      localStorage.setItem("produtos", JSON.stringify(produtos));
+      localStorage.removeItem("produto");
+      window.open("/fridge", "_self");
+    }
+  };
+
   render() {
     const { product } = this.state;
 
@@ -89,7 +130,7 @@ export default class Details extends React.Component {
         <div className={style.containerComprar}>
           <Quantity product={product} />
           <Button onClick={this.addToFridge}>Adicionar à Geladeira</Button>
-          <Button onClick={this.addToFridge}>Comprar Agora</Button>
+          <Button onClick={this.finshOrder}>Comprar Agora</Button>
         </div>
       </div>
     );

@@ -15,6 +15,7 @@ import CategoryOrderByBigger from "../pages/Categorys/CategoryOrderByBigger";
 import CategoryOrderBySmaller from "../pages/Categorys/CategoryOrderBySmaller";
 import CategoryOrderByName from "../pages/Categorys/CategoryOrderByName";
 import Fridge from "../pages/Fridge";
+import Payment from "../pages/Payment";
 
 export default function Routes() {
   return (
@@ -43,6 +44,7 @@ export default function Routes() {
         />
         <Route path={"/login"} component={Login} />
         <Route path={"/fridge"} component={Fridge} />
+        <Route path={"/payment"} component={Payment} />
       </Switch>
     </BrowserRouter>
   );
