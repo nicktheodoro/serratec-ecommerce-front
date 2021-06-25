@@ -145,7 +145,6 @@ export default function Register() {
       },
       enderecos
     );
-    console.log(cliente);
 
     event.preventDefault();
 
@@ -155,6 +154,7 @@ export default function Register() {
         .then((response) => {
           console.log(response);
           alert("Cliente cadastrado com sucesso");
+          window.open("/login", "_self")
         })
 
         .catch((error) => {

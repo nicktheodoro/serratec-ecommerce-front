@@ -7,9 +7,9 @@ export const DivExterna = styled.div`
   display: grid;
   grid-gap: 0px 5px;
   flex-direction: column;
+  justify-content: space-between;
   grid-template-columns: 80% 20%;
   padding: 15px;
-  justify-content: space-between;
 
   @media (max-width: 1000px) {
     flex-direction: row;
@@ -60,6 +60,7 @@ export const DivProduto = styled.div`
   grid-gap: 0px 20px;
   grid-template-columns: 20% 20% 10% 10% 10%;
   flex-direction: row;
+  align-items: center;
   padding: 15px 0;
   display: ${(props) => props.aparecer};
   justify-content: space-evenly;
