@@ -14,7 +14,7 @@ import Quantity from "../../components/Quantity";
 export default class Details extends React.Component {
   state = {
     product: new Product(),
-    quantidade: 1,
+    quantidade: 0,
   };
 
   async componentDidMount() {
@@ -27,13 +27,24 @@ export default class Details extends React.Component {
   addToFridge = () => {
     const logado = localStorage.getItem("token");
     const produto = JSON.parse(localStorage.getItem("produto")) || {};
+    const produtos = JSON.parse(localStorage.getItem("produtos")) || [];
 
     if (!logado) {
       alert("Você precisa estar logado.");
-      window.open("/login");
+      produtos.push(produto);
+      localStorage.setItem("produtos", JSON.stringify(produtos));
+      localStorage.removeItem("produto");
+      window.open("/login", "_self");
+      localStorage.removeItem("msg");
+      return;
     }
 
-    const produtos = JSON.parse(localStorage.getItem("produtos")) || [];
+    if (!localStorage.getItem("msg")) {
+      alert("Você precisa adicionar produtos à geladeira");
+      return;
+    }
+
+    localStorage.removeItem("msg");
 
     const contem = produtos.filter((p) => p.nome === produto.nome);
 
@@ -42,6 +53,7 @@ export default class Details extends React.Component {
         if (p.nome === produto.nome) {
           p.quantidade += produto.quantidade;
           localStorage.setItem("produtos", JSON.stringify(produtos));
+          window.open("/", "_self");
           return;
         }
       });
@@ -49,6 +61,7 @@ export default class Details extends React.Component {
       produtos.push(produto);
       localStorage.setItem("produtos", JSON.stringify(produtos));
       localStorage.removeItem("produto");
+      window.open("/", "_self");
     }
   };
 
@@ -75,12 +88,8 @@ export default class Details extends React.Component {
 
         <div className={style.containerComprar}>
           <Quantity product={product} />
-          <Button onClick={this.addToFridge}>
-            Adicionar à Geladeira
-          </Button>
-          <Button onClick={this.addToFridge}>
-            Comprar Agora
-          </Button>
+          <Button onClick={this.addToFridge}>Adicionar à Geladeira</Button>
+          <Button onClick={this.addToFridge}>Comprar Agora</Button>
         </div>
       </div>
     );

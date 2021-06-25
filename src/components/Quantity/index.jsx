@@ -8,6 +8,7 @@ export default function Quantity(props) {
   const handleAdd = () => {
     setQuantidade(quantidade + 1);
     setProductStorage(Number(document.querySelector(".qtdProdutos").value) + 1);
+    localStorage.setItem("msg", "cliquei");
   };
 
   const handleRmv = () => {
@@ -42,6 +43,7 @@ export default function Quantity(props) {
       <input
         type="text"
         value={quantidade}
+        id="input"
         className="qtdProdutos"
         min="1"
         max="999"
