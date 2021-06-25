@@ -29,6 +29,10 @@ export default class Details extends React.Component {
     const produtos = JSON.parse(localStorage.getItem("produtos")) || [];
 
     if (!logado) {
+      if (!localStorage.getItem("msg")) {
+        alert("Você precisa adicionar produtos à geladeira");
+        return;
+      }
       alert("Você precisa estar logado.");
       produtos.push(produto);
       localStorage.setItem("produtos", JSON.stringify(produtos));
@@ -70,6 +74,10 @@ export default class Details extends React.Component {
     const produtos = JSON.parse(localStorage.getItem("produtos")) || [];
 
     if (!logado) {
+      if (!localStorage.getItem("msg")) {
+        alert("Você precisa adicionar produtos à geladeira");
+        return;
+      }
       alert("Você precisa estar logado.");
       produtos.push(produto);
       localStorage.setItem("produtos", JSON.stringify(produtos));

@@ -28,6 +28,7 @@ export default function Routes() {
         <Route path="/order-by-name" component={OrderByName} />
         <Route path="/products/:nome/details" component={Details} />
         <Route path="/categorys/products/:nome/details" component={Details} />
+        <Route path="/categorys/:category/products/:nome/details" component={Details} />
         <Route path="/register" component={Register} />
         <Route exact path={"/categorys/:category"} component={Categorys} />
         <Route
