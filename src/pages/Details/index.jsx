@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 import API from "../../services/api";
 import Product from "../../models/Product";
@@ -48,7 +47,7 @@ export default class Details extends React.Component {
 
     const contem = produtos.filter((p) => p.nome === produto.nome);
 
-    if (contem.length == 1) {
+    if (contem.length === 1) {
       produtos.map((p) => {
         if (p.nome === produto.nome) {
           p.quantidade += produto.quantidade;
@@ -89,7 +88,7 @@ export default class Details extends React.Component {
 
     const contem = produtos.filter((p) => p.nome === produto.nome);
 
-    if (contem.length == 1) {
+    if (contem.length === 1) {
       produtos.map((p) => {
         if (p.nome === produto.nome) {
           p.quantidade += produto.quantidade;

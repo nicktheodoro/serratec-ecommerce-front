@@ -11,7 +11,7 @@ export default function Header() {
   return (
     <Navbar bg="dark" expand="lg" variant="dark" className={style.navbar}>
       <Navbar.Brand href="/">
-        <img src="https://img.icons8.com/officel/40/000000/beer.png" />
+        <img src="https://img.icons8.com/officel/40/000000/beer.png" alt="Logo"/>
         <span>
           <strong>Mercado do Malte</strong>
         </span>
@@ -56,7 +56,7 @@ export default function Header() {
             </Nav.Link>
           </Nav>
           <Nav.Link href="/fridge">
-            <img src="https://img.icons8.com/glyph-neue/35/26e07f/fridge.png" />
+            <img src="https://img.icons8.com/glyph-neue/35/26e07f/fridge.png" alt="Geladeira"/>
           </Nav.Link>
         </>
       ) : (
@@ -73,7 +73,7 @@ export default function Header() {
           </Nav>
           {logado != null ? (
             <Nav.Link href="/fridge">
-              <img src="https://img.icons8.com/glyph-neue/35/26e07f/fridge.png" />
+              <img src="https://img.icons8.com/glyph-neue/35/26e07f/fridge.png" alt="geladeira"/>
             </Nav.Link>
           ) : (
             <></>
